@@ -11,19 +11,23 @@
 	<script>
 		function secondHighest(arr) {
 			//Write your code here
-			if(arr.length<=1){
-				return Number.NEGATIVE_INFINITY;
-				
-			}
-				let n=arr.length;
-			for(let i=0;i<2;i++){
-					for(let j=0;j<n-1;j++){
-						if(Number(arr[j])>Number(arr[j+1])){
-							[arr[j],arr[j+1]]=[arr[j+1],arr[j]];
-						}
-					}
-			}
-			return arr[n-2];
+			let firstMax = -Infinity;
+    let secondMax = -Infinity;
+
+    for (let num of arr) {
+        if (num > firstMax) {
+            secondMax = firstMax;
+            firstMax = num;
+        } else if (num > secondMax && num !== firstMax) {
+            secondMax = num;
+        }
+    }
+
+    if (secondMax === -Infinity) {
+        return Number.NEGATIVE_INFINITY;
+    }
+
+    return secondMax;
 		}
  
 		function Main() {
